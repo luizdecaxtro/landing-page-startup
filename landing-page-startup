@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mentoria das Startups — Luiz de Castro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --brand: #0B3D2E;
+    --brand-mid: #1A6B4A;
+    --brand-light: #2FA06D;
+    --accent: #F4C842;
+    --accent-dark: #C9A020;
+    --text: #0D1B13;
+    --text-muted: #4A5E53;
+    --bg: #F7F5EE;
+    --bg-card: #FFFFFF;
+    --border: rgba(11,61,46,0.12);
+    --radius: 14px;
+    --radius-lg: 22px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(247,245,238,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1rem;
+    color: var(--brand);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--brand-light); }
+  .nav-cta {
+    background: var(--brand);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 0.55rem 1.4rem;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: var(--brand-mid); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 9rem 2.5rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 80% 30%, rgba(47,160,109,0.13) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 50% at 15% 80%, rgba(244,200,66,0.10) 0%, transparent 60%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; z-index: 0; opacity: 0.04;
+    background-image: repeating-linear-gradient(0deg, var(--brand) 0px, var(--brand) 1px, transparent 1px, transparent 60px),
+                      repeating-linear-gradient(90deg, var(--brand) 0px, var(--brand) 1px, transparent 1px, transparent 60px);
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 720px; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(11,61,46,0.08);
+    border: 1px solid rgba(11,61,46,0.15);
+    border-radius: 999px;
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.04em;
+    color: var(--brand-mid);
+    padding: 0.35rem 1rem;
+    margin-bottom: 1.75rem;
+    text-transform: uppercase;
+  }
+  .hero-tag::before { content: ''; display: block; width: 7px; height: 7px; border-radius: 50%; background: var(--brand-light); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.5rem, 5.5vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--brand);
+    margin-bottom: 1.5rem;
+  }
+  h1 em { font-style: normal; color: var(--brand-light); }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+  .hero-cta-group { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+  .btn-primary {
+    background: var(--brand);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 500;
+    padding: 1rem 2.2rem;
+    border-radius: 999px;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(11,61,46,0.25);
+  }
+  .btn-primary:hover { background: var(--brand-mid); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(11,61,46,0.3); }
+  .btn-primary svg { width: 18px; height: 18px; }
+  .btn-secondary {
+    color: var(--brand);
+    font-size: 0.95rem; font-weight: 500;
+    text-decoration: none;
+    border-bottom: 2px solid var(--brand-light);
+    padding-bottom: 2px;
+    transition: border-color 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--brand); }
+
+  /* STATS STRIP */
+  .stats-strip {
+    background: var(--brand);
+    color: #fff;
+    padding: 2rem 2.5rem;
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 0;
+  }
+  .stat-item {
+    text-align: center;
+    padding: 0.5rem 3rem;
+    border-right: 1px solid rgba(255,255,255,0.15);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--accent);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .stat-label {
+    font-size: 0.82rem;
+    font-weight: 400;
+    opacity: 0.8;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 2.5rem; }
+  .section-inner { max-width: 1080px; margin: 0 auto; }
+  .section-tag {
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--brand-light);
+    margin-bottom: 0.75rem;
+  }
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    color: var(--brand);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .section-desc {
+    font-size: 1.05rem; color: var(--text-muted);
+    max-width: 560px; margin-bottom: 3.5rem; font-weight: 300;
+  }
+
+  /* MODULES GRID */
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 1.5rem;
+  }
+  .module-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .module-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--brand-light);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .module-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(11,61,46,0.1); border-color: rgba(11,61,46,0.2); }
+  .module-card:hover::before { opacity: 1; }
+  .module-icon {
+    width: 44px; height: 44px;
+    background: rgba(47,160,109,0.1);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.1rem;
+    font-size: 1.4rem;
+  }
+  .module-num {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--brand-light);
+    margin-bottom: 0.4rem;
+  }
+  .module-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--brand); margin-bottom: 0.6rem;
+  }
+  .module-desc {
+    font-size: 0.9rem; color: var(--text-muted);
+    line-height: 1.65; margin-bottom: 1rem; font-weight: 300;
+  }
+  .module-meta {
+    display: flex; gap: 0.75rem; flex-wrap: wrap;
+  }
+  .badge {
+    font-size: 0.75rem; font-weight: 500;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(11,61,46,0.07);
+    color: var(--brand-mid);
+  }
+  .badge-accent { background: rgba(244,200,66,0.2); color: #8a6800; }
+
+  /* INCLUDES */
+  .includes-section { background: var(--brand); }
+  .includes-section h2, .includes-section .section-tag { color: #fff; }
+  .includes-section .section-desc { color: rgba(255,255,255,0.7); }
+  .includes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+  .include-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    transition: background 0.2s;
+  }
+  .include-card:hover { background: rgba(255,255,255,0.11); }
+  .include-icon {
+    font-size: 1.6rem;
+    margin-bottom: 0.9rem;
+    display: block;
+  }
+  .include-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .include-desc {
+    font-size: 0.87rem; color: rgba(255,255,255,0.75);
+    line-height: 1.65; font-weight: 300;
+  }
+
+  /* MENTOR */
+  .mentor-section {
+    background: #fff;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .mentor-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .mentor-visual {
+    background: linear-gradient(135deg, rgba(11,61,46,0.06) 0%, rgba(47,160,109,0.12) 100%);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .mentor-avatar {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: var(--brand);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem; font-weight: 800;
+    color: var(--accent);
+    margin: 0 auto 1.25rem;
+  }
+  .mentor-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem; font-weight: 800;
+    color: var(--brand);
+    margin-bottom: 0.25rem;
+  }
+  .mentor-title-small {
+    font-size: 0.85rem; color: var(--text-muted); font-weight: 400;
+  }
+  .mentor-text {
+    font-size: 1rem; color: var(--text-muted);
+    font-weight: 300; line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  /* FAQ */
+  .faq-list { max-width: 720px; }
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 0;
+  }
+  .faq-question {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--brand);
+    cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 1rem;
+  }
+  .faq-question .toggle {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgba(11,61,46,0.08);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.2rem; color: var(--brand-light);
+    transition: transform 0.25s, background 0.2s;
+    user-select: none;
+  }
+  .faq-item.open .toggle { transform: rotate(45deg); background: var(--brand-light); color: #fff; }
+  .faq-answer {
+    font-size: 0.95rem; color: var(--text-muted);
+    font-weight: 300; line-height: 1.75;
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.35s ease, margin-top 0.25s;
+  }
+  .faq-item.open .faq-answer { max-height: 300px; margin-top: 0.85rem; }
+
+  /* CTA FINAL */
+  .cta-final {
+    background: var(--brand);
+    text-align: center;
+    padding: 7rem 2.5rem;
+    position: relative; overflow: hidden;
+  }
+  .cta-final::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.06);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .cta-final::after {
+    content: '';
+    position: absolute;
+    width: 900px; height: 900px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.04);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .cta-final-inner { position: relative; z-index: 1; }
+  .cta-final h2 { color: #fff; margin-bottom: 1rem; }
+  .cta-final p { color: rgba(255,255,255,0.75); font-size: 1.1rem; max-width: 500px; margin: 0 auto 2.5rem; font-weight: 300; }
+  .btn-accent {
+    background: var(--accent);
+    color: var(--brand);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem; font-weight: 700;
+    padding: 1.1rem 2.8rem;
+    border-radius: 999px;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 10px;
+    transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 24px rgba(244,200,66,0.35);
+  }
+  .btn-accent:hover { background: #f8d45f; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(244,200,66,0.45); }
+  .free-badge {
+    display: inline-block;
+    background: rgba(244,200,66,0.2);
+    border: 1px solid rgba(244,200,66,0.35);
+    color: var(--accent);
+    font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--text);
+    color: rgba(255,255,255,0.55);
+    text-align: center;
+    padding: 2.5rem;
+    font-size: 0.85rem;
+  }
+  footer a { color: rgba(255,255,255,0.75); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.2); }
+  footer a:hover { color: #fff; }
+
+  @media (max-width: 680px) {
+    nav { padding: 1rem 1.25rem; }
+    .hero { padding: 8rem 1.25rem 4rem; }
+    section { padding: 4rem 1.25rem; }
+    .stat-item { padding: 0.5rem 1.5rem; }
+    .mentor-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .cta-final { padding: 5rem 1.25rem; }
+  }
+
+  /* ANIMATION */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="https://www.lojasdecastro.com.br" target="_blank">Luiz de <span>Castro</span></a>
+  <a class="nav-cta" href="https://luizdecaxtro.github.io/mentoria_startups/startup-inscricao.html" target="_blank">Inscrever-se grátis</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">100% Online · Gratuito · Certificado oficial</div>
+    <h1>Transforme sua ideia em uma <em>startup de sucesso</em></h1>
+    <p class="hero-sub">Do zero ao empreendedor global — aprenda ideação, modelagem, financeiro, captação de investimento e expansão com mentoria de Luiz de Castro, Mestre em Gestão.</p>
+    <div class="hero-cta-group">
+      <a class="btn-primary" href="https://luizdecaxtro.github.io/mentoria_startups/startup-inscricao.html" target="_blank">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3v14M3 10l7 7 7-7"/></svg>
+        Fazer inscrição gratuita
+      </a>
+      <a class="btn-secondary" href="#modulos">Ver os módulos ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-item"><span class="stat-num">5</span><span class="stat-label">Módulos</span></div>
+  <div class="stat-item"><span class="stat-num">48</span><span class="stat-label">Aulas</span></div>
+  <div class="stat-item"><span class="stat-num">+32h</span><span class="stat-label">Conteúdo</span></div>
+  <div class="stat-item"><span class="stat-num">7</span><span class="stat-label">PDFs</span></div>
+  <div class="stat-item"><span class="stat-num">MIA</span><span class="stat-label">IA co-mentora</span></div>
+</div>
+
+<!-- MÓDULOS -->
+<section id="modulos">
+  <div class="section-inner">
+    <p class="section-tag">Programa completo</p>
+    <h2>5 Módulos do zero ao sucesso</h2>
+    <p class="section-desc">Uma jornada progressiva e aplicada, cobrindo tudo que um empreendedor precisa para construir uma startup sólida.</p>
+    <div class="modules-grid">
+      <div class="module-card fade-up">
+        <div class="module-icon">💡</div>
+        <p class="module-num">Módulo 1</p>
+        <p class="module-title">Ideação & Validação</p>
+        <p class="module-desc">Design Thinking, MVP, Customer Discovery, Mom Test, pivot vs. perseverar. Valide sua ideia antes de investir tempo e dinheiro.</p>
+        <div class="module-meta">
+          <span class="badge">6 aulas</span>
+          <span class="badge">3h 20min</span>
+          <span class="badge-accent badge">Iniciante</span>
+        </div>
+      </div>
+      <div class="module-card fade-up">
+        <div class="module-icon">🏗️</div>
+        <p class="module-num">Módulo 2</p>
+        <p class="module-title">Modelagem & Registro</p>
+        <p class="module-desc">Business Model Canvas, proposta de valor, ICP, tipos societários (LTDA vs S.A.), tributação e propriedade intelectual.</p>
+        <div class="module-meta">
+          <span class="badge">12 aulas</span>
+          <span class="badge">7h 55min</span>
+          <span class="badge-accent badge">Iniciante</span>
+        </div>
+      </div>
+      <div class="module-card fade-up">
+        <div class="module-icon">💰</div>
+        <p class="module-num">Módulo 3</p>
+        <p class="module-title">Financeiro & Marketing</p>
+        <p class="module-desc">CAC, LTV, MRR, churn, burn rate, runway, projeções financeiras, growth hacking AARRR, funil de vendas e Customer Success.</p>
+        <div class="module-meta">
+          <span class="badge">12 aulas</span>
+          <span class="badge">8h 30min</span>
+          <span class="badge-accent badge">Intermediário</span>
+        </div>
+      </div>
+      <div class="module-card fade-up">
+        <div class="module-icon">📈</div>
+        <p class="module-num">Módulo 4</p>
+        <p class="module-title">Captação & Operações</p>
+        <p class="module-desc">Ecossistema de VCs, pitch deck dos 10 slides, valuation, term sheet, OKRs, LGPD e como construir times de alta performance.</p>
+        <div class="module-meta">
+          <span class="badge">12 aulas</span>
+          <span class="badge">9h 05min</span>
+          <span class="badge-accent badge">Avançado</span>
+        </div>
+      </div>
+      <div class="module-card fade-up">
+        <div class="module-icon">🌍</div>
+        <p class="module-num">Módulo 5</p>
+        <p class="module-title">Expansão & Crescimento</p>
+        <p class="module-desc">Internacionalização, parcerias estratégicas, M&A, IPO, inovação contínua e o legado do empreendedor.</p>
+        <div class="module-meta">
+          <span class="badge">6 aulas</span>
+          <span class="badge">3h 30min</span>
+          <span class="badge-accent badge">Avançado</span>
+        </div>
+      </div>
+      <div class="module-card fade-up">
+        <div class="module-icon">🏆</div>
+        <p class="module-num">Conclusão</p>
+        <p class="module-title">Avaliação & Certificado</p>
+        <p class="module-desc">Avaliação final com 30 questões. Nota mínima 7,0. Certificado gerado automaticamente ao ser aprovado.</p>
+        <div class="module-meta">
+          <span class="badge">30 questões</span>
+          <span class="badge">60 min</span>
+          <span class="badge-accent badge">3 tentativas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INCLUDES -->
+<section class="includes-section">
+  <div class="section-inner">
+    <p class="section-tag" style="color:rgba(255,255,255,0.55)">Recursos exclusivos</p>
+    <h2>O que está incluído</h2>
+    <p class="section-desc">Além do conteúdo em vídeo e texto, você tem acesso a recursos que aceleram seu aprendizado.</p>
+    <div class="includes-grid">
+      <div class="include-card fade-up">
+        <span class="include-icon">🤖</span>
+        <p class="include-title">MIA — IA co-mentora 24h</p>
+        <p class="include-desc">Assistente inteligente disponível em todos os módulos para tirar dúvidas, aprofundar conceitos e criar exercícios práticos sob medida.</p>
+      </div>
+      <div class="include-card fade-up">
+        <span class="include-icon">📄</span>
+        <p class="include-title">7 PDFs com conteúdo profundo</p>
+        <p class="include-desc">Material de apoio para cada módulo, glossário com +80 termos e manual do aluno completo. Ideal para revisão antes da avaliação.</p>
+      </div>
+      <div class="include-card fade-up">
+        <span class="include-icon">🏆</span>
+        <p class="include-title">Certificado oficial automático</p>
+        <p class="include-desc">Ao atingir nota 7,0 na avaliação final, seu certificado em formato A4 é gerado automaticamente com nome, data e código de validação.</p>
+      </div>
+      <div class="include-card fade-up">
+        <span class="include-icon">⏱️</span>
+        <p class="include-title">Aprenda no seu ritmo</p>
+        <p class="include-desc">100% assíncrono e online. Sem horário fixo, sem turmas. Acesse quando quiser, pelo computador ou celular.</p>
+      </div>
+      <div class="include-card fade-up">
+        <span class="include-icon">✅</span>
+        <p class="include-title">Checklists práticos</p>
+        <p class="include-desc">Cada aula termina com um checklist de ações concretas para aplicar imediatamente na sua startup ou ideia de negócio.</p>
+      </div>
+      <div class="include-card fade-up">
+        <span class="include-icon">📊</span>
+        <p class="include-title">Tabelas e frameworks</p>
+        <p class="include-desc">Business Model Canvas, AARRR, comparativos de regimes tributários, tabelas de métricas de startup e muito mais.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENTOR -->
+<section class="mentor-section">
+  <div class="section-inner">
+    <div class="mentor-grid">
+      <div>
+        <div class="mentor-visual">
+          <div class="mentor-avatar">LC</div>
+          <p class="mentor-name">Luiz de Castro</p>
+          <p class="mentor-title-small">Mestre em Gestão · Mentor de Startups</p>
+        </div>
+      </div>
+      <div>
+        <p class="section-tag">Seu mentor</p>
+        <h2>Experiência que transforma ideias em negócios reais</h2>
+        <p class="mentor-text">Luiz de Castro é Mestre em Gestão e mentor de startups com profundo conhecimento do ecossistema empreendedor brasileiro. Sua metodologia alia rigor acadêmico com a prática do dia a dia de quem empreende.</p>
+        <p class="mentor-text">Do ideação ao IPO, cada módulo foi desenhado para que você avance com confiança e clareza, independentemente do seu estágio atual como empreendedor.</p>
+        <a class="btn-primary" href="https://www.lojasdecastro.com.br" target="_blank" style="display:inline-flex">
+          Conheça o site oficial →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="section-inner">
+    <p class="section-tag">Dúvidas frequentes</p>
+    <h2>Perguntas que todo empreendedor faz</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          A mentoria é gratuita?
+          <span class="toggle">+</span>
+        </div>
+        <p class="faq-answer">A inscrição é completamente gratuita. Após o cadastro, você recebe acesso imediato a todos os 5 módulos, PDFs e à avaliação final com certificado, sem nenhum custo.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Como funciona o certificado?
+          <span class="toggle">+</span>
+        </div>
+        <p class="faq-answer">Após completar os 5 módulos, você faz a Avaliação Final com 30 questões. Atingindo nota 7,0 (21 de 30 corretas), o certificado em formato A4 é gerado automaticamente com seu nome, data e código de validação. Você tem 3 tentativas.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Precisa ter uma startup para participar?
+          <span class="toggle">+</span>
+        </div>
+        <p class="faq-answer">Não! A mentoria é ideal tanto para quem tem apenas uma ideia quanto para quem já tem uma startup em andamento. O conteúdo foi estruturado de forma progressiva para atender todos os estágios — do zero até quem busca escalar e captar investimento.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Qual é o tempo estimado para concluir?
+          <span class="toggle">+</span>
+        </div>
+        <p class="faq-answer">O cronograma sugerido é de 10 semanas dedicando cerca de 3–4 horas por semana. No total são mais de 32 horas de conteúdo aplicado. Mas como é 100% assíncrono, você pode concluir mais rápido ou mais devagar, no seu ritmo.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          O que é a MIA?
+          <span class="toggle">+</span>
+        </div>
+        <p class="faq-answer">A MIA (Mentora Inteligente Artificial) é uma IA co-mentora disponível em todos os módulos, 24 horas por dia. Você pode fazer perguntas sobre o conteúdo das aulas, pedir exercícios práticos, aprofundar conceitos ou adaptar o que aprendeu à realidade da sua startup.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="cta-final-inner">
+    <div class="free-badge">Inscrição 100% gratuita</div>
+    <h2>Comece sua jornada empreendedora hoje</h2>
+    <p>Preencha a ficha de inscrição em menos de 2 minutos e tenha acesso imediato a todo o conteúdo.</p>
+    <a class="btn-accent" href="https://luizdecaxtro.github.io/mentoria_startups/startup-inscricao.html" target="_blank">
+      📝 Preencher ficha de inscrição
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong style="color:rgba(255,255,255,0.85)">Mentoria das Startups</strong> · Luiz de Castro — Mestre em Gestão</p>
+  <p style="margin-top:0.5rem">Todos os direitos reservados · <a href="https://www.lojasdecastro.com.br" target="_blank">lojasdecastro.com.br</a></p>
+</footer>
+
+<script>
+  function toggleFaq(el) {
+    const item = el.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
