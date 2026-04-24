@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luiz de Castro — Conhecimento que Transforma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green:       #1A5C3A;
+  --green-mid:   #2E8B57;
+  --green-light: #4CAF80;
+  --green-pale:  #E8F5EE;
+  --gold:        #D4A017;
+  --gold-light:  #F0C040;
+  --gold-pale:   #FDF6E3;
+  --warm:        #FAFAF7;
+  --cream:       #F5F2EB;
+  --text:        #1C2B22;
+  --muted:       #5A7060;
+  --border:      rgba(26,92,58,0.12);
+  --r:           16px;
+  --r-lg:        24px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--warm);
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+button.nav-link, button.pillar, button.btn-green, button.btn-outline {
+  border: none; cursor: pointer; font-family: inherit; text-align: left;
+  background: none; padding: 0;
+}
+button.btn-green {
+  background: var(--green); color: #fff;
+  font-size: 0.95rem; font-weight: 600;
+  padding: 0.9rem 2rem; border-radius: 999px;
+  display: inline-flex; align-items: center; gap: 8px;
+  box-shadow: 0 4px 20px rgba(26,92,58,0.3);
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+button.btn-green:hover { background: var(--green-mid); transform: translateY(-2px); }
+button.btn-outline {
+  border: 2px solid var(--green) !important; color: var(--green);
+  font-size: 0.95rem; font-weight: 600;
+  padding: 0.85rem 2rem; border-radius: 999px;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+button.btn-outline:hover { background: var(--green); color: #fff; }
+button.nav-link {
+  font-size: 0.85rem; font-weight: 500;
+  color: var(--muted);
+  padding: 0.35rem 0.75rem; border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+button.nav-link:hover { background: var(--green-pale); color: var(--green); }
+
+#apps, #mentorias, #livros, #membros {
+  scroll-margin-top: 72px;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.9rem 2.5rem;
+  background: rgba(250,250,247,0.94);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.logo-wrap { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo-icon {
+  width: 42px; height: 42px;
+  background: var(--green);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.logo-icon svg { width: 24px; height: 24px; fill: var(--gold-light); }
+.logo-text { line-height: 1.2; }
+.logo-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem; font-weight: 900;
+  color: var(--green); display: block;
+}
+.logo-sub { font-size: 0.7rem; font-weight: 500; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+.nav-links { display: flex; align-items: center; gap: 1rem; }
+.nav-link {
+  font-size: 0.85rem; font-weight: 500;
+  color: var(--muted); text-decoration: none;
+  padding: 0.35rem 0.75rem; border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-link:hover { background: var(--green-pale); color: var(--green); }
+.nav-cta {
+  background: var(--green);
+  color: #fff; font-size: 0.85rem; font-weight: 600;
+  padding: 0.55rem 1.4rem; border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+.nav-cta:hover { background: var(--green-mid); transform: translateY(-1px); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: 3rem;
+  padding: 8rem 2.5rem 5rem;
+  max-width: 1200px; margin: 0 auto;
+  position: relative;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gold-pale); border: 1px solid rgba(212,160,23,0.3);
+  border-radius: 999px; padding: 0.4rem 1rem;
+  font-size: 0.78rem; font-weight: 600; color: #8a6000;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.hero-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  font-weight: 900; line-height: 1.1;
+  letter-spacing: -0.02em; color: var(--green);
+  margin-bottom: 1.25rem;
+}
+h1 span { color: var(--gold); }
+.hero-sub {
+  font-size: 1.05rem; color: var(--muted); font-weight: 300;
+  line-height: 1.85; margin-bottom: 2.5rem; max-width: 480px;
+}
+.hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.btn-green {
+  background: var(--green); color: #fff;
+  font-size: 0.95rem; font-weight: 600;
+  padding: 0.9rem 2rem; border-radius: 999px;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  box-shadow: 0 4px 20px rgba(26,92,58,0.3);
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.btn-green:hover { background: var(--green-mid); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(26,92,58,0.35); }
+.btn-outline {
+  border: 2px solid var(--green); color: var(--green);
+  font-size: 0.95rem; font-weight: 600;
+  padding: 0.85rem 2rem; border-radius: 999px;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-outline:hover { background: var(--green); color: #fff; }
+.hero-trust { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+.trust-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--muted); }
+.trust-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green-light); flex-shrink: 0; }
+
+/* Hero Illustration */
+.hero-visual {
+  position: relative;
+  display: flex; justify-content: center; align-items: center;
+}
+.hero-cards-stack {
+  position: relative; width: 340px; height: 380px;
+}
+.hcard {
+  position: absolute;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 8px 32px rgba(26,92,58,0.1);
+  width: 260px;
+  transition: transform 0.3s;
+}
+.hcard:nth-child(1) { top: 0; left: 40px; transform: rotate(-4deg); background: var(--gold-pale); border-color: rgba(212,160,23,0.25); }
+.hcard:nth-child(2) { top: 80px; left: 80px; transform: rotate(2deg); z-index: 2; }
+.hcard:nth-child(3) { top: 160px; left: 20px; transform: rotate(-2deg); background: var(--green-pale); border-color: var(--border); z-index: 3; }
+.hcard:hover { transform: rotate(0deg) scale(1.03) !important; z-index: 10; }
+.hcard-icon { font-size: 1.5rem; margin-bottom: 0.5rem; display: block; }
+.hcard-title { font-weight: 700; font-size: 0.95rem; color: var(--green); margin-bottom: 0.2rem; }
+.hcard-sub { font-size: 0.8rem; color: var(--muted); font-weight: 300; }
+.hcard-badge { display: inline-block; margin-top: 0.6rem; font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.65rem; border-radius: 999px; background: rgba(26,92,58,0.1); color: var(--green); letter-spacing: 0.04em; }
+.hcard-badge.gold { background: rgba(212,160,23,0.15); color: #8a6000; }
+
+/* ── PILLARS ── */
+.pillars-section {
+  background: var(--green);
+  padding: 0;
+}
+.pillars-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+.pillar {
+  padding: 2.5rem 2rem;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  transition: background 0.25s;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+}
+.pillar:last-child { border-right: none; }
+.pillar:hover { background: rgba(255,255,255,0.06); }
+.pillar-icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.1rem;
+  font-size: 1.5rem;
+}
+.pillar-icon.i1 { background: rgba(240,192,64,0.2); }
+.pillar-icon.i2 { background: rgba(255,255,255,0.1); }
+.pillar-icon.i3 { background: rgba(76,175,128,0.25); }
+.pillar-icon.i4 { background: rgba(240,192,64,0.15); }
+.pillar-label {
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gold-light);
+  margin-bottom: 0.4rem;
+}
+.pillar-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; font-weight: 700;
+  color: #fff; line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+.pillar-desc { font-size: 0.85rem; color: rgba(255,255,255,0.65); font-weight: 300; line-height: 1.65; }
+.free-chip {
+  display: inline-block; margin-top: 0.75rem;
+  background: var(--gold-light); color: var(--green);
+  font-size: 0.7rem; font-weight: 800;
+  padding: 0.2rem 0.7rem; border-radius: 999px;
+  letter-spacing: 0.05em;
+}
+
+/* ── SECTION BASE ── */
+.section { padding: 6rem 2.5rem; }
+.section-inner { max-width: 1140px; margin: 0 auto; }
+.chip {
+  display: inline-block; font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.3rem 0.9rem; border-radius: 999px;
+  background: var(--green-pale); color: var(--green);
+  margin-bottom: 0.75rem;
+}
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+  font-weight: 900; letter-spacing: -0.02em;
+  color: var(--green); line-height: 1.2;
+  margin-bottom: 0.9rem;
+}
+.section-sub {
+  font-size: 1rem; color: var(--muted); font-weight: 300;
+  max-width: 540px; line-height: 1.8; margin-bottom: 3.5rem;
+}
+
+/* ── APPS ── */
+.apps-section { background: var(--cream); }
+.apps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+.app-card {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 1.6rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none; display: block;
+  position: relative; overflow: hidden;
+}
+.app-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: var(--green-light); transform: scaleX(0);
+  transform-origin: left; transition: transform 0.25s;
+}
+.app-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(26,92,58,0.1); }
+.app-card:hover::after { transform: scaleX(1); }
+.app-card-icon {
+  width: 50px; height: 50px; border-radius: 14px;
+  background: var(--green-pale); display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; margin-bottom: 1rem;
+}
+.app-card-title { font-weight: 700; font-size: 1rem; color: var(--green); margin-bottom: 0.4rem; }
+.app-card-desc { font-size: 0.87rem; color: var(--muted); font-weight: 300; line-height: 1.65; margin-bottom: 0.9rem; }
+.free-tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: #E8F5EE; color: var(--green);
+  font-size: 0.75rem; font-weight: 700;
+  padding: 0.25rem 0.75rem; border-radius: 999px;
+}
+.free-tag::before { content: '✓'; font-size: 0.8rem; }
+
+/* ── MENTORIAS ── */
+.mentorias-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+.mentoria-card {
+  border-radius: var(--r-lg); overflow: hidden;
+  border: 1px solid var(--border);
+  background: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex; flex-direction: column;
+}
+.mentoria-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(26,92,58,0.12); }
+.mentoria-header {
+  padding: 2rem 1.75rem 1.5rem;
+  position: relative;
+}
+.m-color-1 { background: linear-gradient(135deg, #E8F5EE 0%, #D0EDE0 100%); }
+.m-color-2 { background: linear-gradient(135deg, #FDF6E3 0%, #FAE7B0 100%); }
+.m-color-3 { background: linear-gradient(135deg, #EEF0FF 0%, #D8DCFF 100%); }
+.mentoria-emoji { font-size: 2.2rem; display: block; margin-bottom: 0.75rem; }
+.mentoria-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem; font-weight: 900;
+  color: var(--green); line-height: 1.25;
+}
+.mentoria-body { padding: 1.5rem 1.75rem; flex: 1; display: flex; flex-direction: column; }
+.mentoria-desc { font-size: 0.9rem; color: var(--muted); font-weight: 300; line-height: 1.7; margin-bottom: 1.25rem; flex: 1; }
+.mentoria-stats { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.mstat { font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 999px; background: var(--green-pale); color: var(--green); }
+.btn-mentoria {
+  display: block; text-align: center;
+  background: var(--green); color: #fff;
+  font-weight: 700; font-size: 0.9rem;
+  padding: 0.85rem; border-radius: 12px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.btn-mentoria:hover { background: var(--green-mid); }
+.btn-mentoria.gold-btn { background: var(--gold); color: #fff; }
+.btn-mentoria.gold-btn:hover { background: #b8890e; }
+
+/* ── LIVROS ── */
+.livros-section { background: var(--gold-pale); border-top: 1px solid rgba(212,160,23,0.2); border-bottom: 1px solid rgba(212,160,23,0.2); }
+.livros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+.livro-card {
+  background: #fff; border-radius: var(--r);
+  border: 1px solid rgba(212,160,23,0.2);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none; display: flex; flex-direction: column;
+}
+.livro-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(212,160,23,0.2); }
+.livro-cover {
+  height: 180px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem;
+  position: relative; overflow: hidden;
+}
+.livro-cover.c1 { background: linear-gradient(135deg, #FDF6E3, #F0C040); }
+.livro-cover.c2 { background: linear-gradient(135deg, #E8F5EE, #4CAF80); }
+.livro-cover.c3 { background: linear-gradient(135deg, #EEF0FF, #A0A8FF); }
+.livro-cover.c4 { background: linear-gradient(135deg, #FFF0F0, #FF8080); }
+.livro-cover.c5 { background: linear-gradient(135deg, #F0FFF0, #80D080); }
+.livro-spine {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 8px;
+  background: rgba(0,0,0,0.12);
+}
+.livro-body { padding: 1rem 1.1rem; flex: 1; display: flex; flex-direction: column; }
+.livro-title { font-weight: 700; font-size: 0.9rem; color: var(--green); margin-bottom: 0.35rem; line-height: 1.3; }
+.livro-desc { font-size: 0.78rem; color: var(--muted); font-weight: 300; line-height: 1.6; flex: 1; margin-bottom: 0.9rem; }
+.btn-buy {
+  display: block; text-align: center;
+  background: var(--gold); color: #fff;
+  font-size: 0.82rem; font-weight: 700;
+  padding: 0.6rem; border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.btn-buy:hover { background: #b8890e; }
+.livro-free { display: block; text-align: center; font-size: 0.75rem; font-weight: 600; color: var(--green); margin-top: 0.5rem; }
+
+/* ── MEMBROS ── */
+.membros-section {
+  background: var(--green);
+  color: #fff;
+  padding: 6rem 2.5rem;
+}
+.membros-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: center; }
+.membros-inner .chip { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.9); }
+.membros-inner h2 { color: #fff; }
+.membros-inner .section-sub { color: rgba(255,255,255,0.7); }
+.membros-perks { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem; }
+.perk {
+  display: flex; align-items: flex-start; gap: 1rem;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px; padding: 1.1rem 1.25rem;
+  transition: background 0.2s;
+}
+.perk:hover { background: rgba(255,255,255,0.11); }
+.perk-icon {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: rgba(240,192,64,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.perk-text .perk-title { font-weight: 700; font-size: 0.95rem; color: var(--gold-light); margin-bottom: 0.2rem; }
+.perk-text .perk-desc { font-size: 0.83rem; color: rgba(255,255,255,0.65); font-weight: 300; }
+.btn-membros {
+  background: var(--gold-light); color: var(--green);
+  font-weight: 800; font-size: 1rem;
+  padding: 1.05rem 2.5rem; border-radius: 999px;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  box-shadow: 0 4px 24px rgba(240,192,64,0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-membros:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(240,192,64,0.45); }
+.membros-visual {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--r-lg);
+  padding: 2rem;
+}
+.membros-visual-title { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1.25rem; }
+.member-row {
+  display: flex; align-items: center; gap: 0.9rem;
+  padding: 0.85rem;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.07);
+  margin-bottom: 0.6rem;
+  transition: background 0.2s;
+}
+.member-row:hover { background: rgba(255,255,255,0.09); }
+.member-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--green-light); display: flex; align-items: center;
+  justify-content: center; font-weight: 700; font-size: 0.82rem; color: #fff;
+  flex-shrink: 0;
+}
+.member-info .member-name { font-size: 0.88rem; font-weight: 600; color: #fff; }
+.member-info .member-type { font-size: 0.75rem; color: rgba(255,255,255,0.55); }
+.member-badge-status {
+  margin-left: auto; font-size: 0.7rem; font-weight: 700;
+  padding: 0.2rem 0.6rem; border-radius: 999px;
+}
+.mb-visitante { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.8); }
+.mb-membro { background: rgba(240,192,64,0.25); color: var(--gold-light); }
+.visitante-note {
+  margin-top: 1.25rem; padding: 1rem;
+  background: rgba(76,175,128,0.15);
+  border: 1px solid rgba(76,175,128,0.25);
+  border-radius: 12px;
+  font-size: 0.83rem; color: rgba(255,255,255,0.8); font-weight: 300; line-height: 1.6;
+}
+.visitante-note strong { color: var(--gold-light); }
+
+/* ── CTA FINAL ── */
+.cta-section {
+  background: var(--cream);
+  padding: 7rem 2.5rem;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(76,175,128,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-inner { position: relative; max-width: 640px; margin: 0 auto; }
+.cta-bignum {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem; font-weight: 900; color: var(--green);
+  opacity: 0.07; line-height: 1; margin-bottom: -2rem;
+  user-select: none;
+}
+.cta-section h2 { margin-bottom: 1rem; }
+.cta-section p { font-size: 1rem; color: var(--muted); font-weight: 300; line-height: 1.8; margin-bottom: 2.5rem; }
+.cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-gold {
+  background: var(--gold); color: #fff;
+  font-size: 1rem; font-weight: 700;
+  padding: 1rem 2.3rem; border-radius: 999px;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  box-shadow: 0 4px 20px rgba(212,160,23,0.35);
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-gold:hover { background: #b8890e; transform: translateY(-2px); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--text);
+  padding: 3rem 2.5rem 2rem;
+}
+.footer-inner { max-width: 1140px; margin: 0 auto; }
+.footer-top {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 3rem; margin-bottom: 2.5rem;
+}
+.footer-brand { }
+.footer-logo {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 1rem; text-decoration: none;
+}
+.footer-logo-icon {
+  width: 36px; height: 36px; background: var(--green-mid);
+  border-radius: 9px; display: flex; align-items: center; justify-content: center;
+}
+.footer-logo-icon svg { width: 20px; height: 20px; fill: var(--gold-light); }
+.footer-logo-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem; font-weight: 900; color: #fff;
+}
+.footer-tagline { font-size: 0.85rem; color: rgba(255,255,255,0.45); font-weight: 300; line-height: 1.7; }
+.footer-col h4 { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 1rem; }
+.footer-col a { display: block; font-size: 0.88rem; color: rgba(255,255,255,0.65); text-decoration: none; margin-bottom: 0.5rem; transition: color 0.2s; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding-top: 1.5rem;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+.footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.35); }
+.footer-site { font-size: 0.8rem; color: var(--green-light); text-decoration: none; font-weight: 500; }
+.footer-site:hover { color: #fff; }
+
+/* ── ANIM ── */
+.fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.fade-up.in { opacity: 1; transform: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 0.85rem 1.25rem; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; padding: 7rem 1.25rem 4rem; text-align: center; }
+  .hero-sub { margin: 0 auto 2rem; }
+  .hero-ctas { justify-content: center; }
+  .hero-trust { justify-content: center; }
+  .hero-visual { display: none; }
+  .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+  .pillar { border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .membros-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .section { padding: 4rem 1.25rem; }
+  .membros-section { padding: 4rem 1.25rem; }
+  .cta-section { padding: 5rem 1.25rem; }
+}
+@media (max-width: 540px) {
+  .pillars-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo-wrap" href="https://www.lojasdecastro.com.br" target="_blank">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    </div>
+    <div class="logo-text">
+      <span class="logo-name">Luiz de Castro</span>
+      <span class="logo-sub">Conhecimento & Inovação</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <button class="nav-link" data-goto="apps">Apps Grátis</button>
+    <button class="nav-link" data-goto="mentorias">Mentorias</button>
+    <button class="nav-link" data-goto="livros">Livros</button>
+    <button class="nav-link" data-goto="membros">Membros</button>
+  </div>
+  <a class="nav-cta" href="https://www.lojasdecastro.com.br/area-de-membros" target="_blank">Área de Membros</a>
+</nav>
+
+<!-- HERO -->
+<section style="background: var(--warm); padding-top: 0;">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-badge">Plataforma de Conhecimento e Transformação</div>
+      <h1>Aprenda, cresça e <span>transforme</span> sua carreira</h1>
+      <p class="hero-sub">Livros, mentorias exclusivas, aplicativos gratuitos e uma área de membros aberta a todos — conteúdo criado por Luiz de Castro, Mestre em Gestão.</p>
+      <div class="hero-ctas">
+        <button class="btn-green" data-goto="mentorias">Inscrever-se nas Mentorias →</button>
+        <button class="btn-outline" data-goto="livros">Ver os Livros</button>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item"><div class="trust-dot"></div>Apps 100% gratuitos</div>
+        <div class="trust-item"><div class="trust-dot"></div>Inscrição gratuita</div>
+        <div class="trust-item"><div class="trust-dot"></div>Certificados oficiais</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-cards-stack">
+        <div class="hcard">
+          <span class="hcard-icon">📱</span>
+          <p class="hcard-title">Apps Incríveis</p>
+          <p class="hcard-sub">Inglês, IA, Startup e mais</p>
+          <span class="hcard-badge gold">100% Gratuito</span>
+        </div>
+        <div class="hcard">
+          <span class="hcard-icon">🎓</span>
+          <p class="hcard-title">Mentorias Exclusivas</p>
+          <p class="hcard-sub">Startups · Profissões + IA · MITE</p>
+          <span class="hcard-badge">Inscrição Aberta</span>
+        </div>
+        <div class="hcard">
+          <span class="hcard-icon">📚</span>
+          <p class="hcard-title">Livros & E-books</p>
+          <p class="hcard-sub">5 títulos exclusivos</p>
+          <span class="hcard-badge gold">1 livro grátis</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILARES -->
+<div class="pillars-section">
+  <div class="pillars-grid">
+    <button class="pillar" data-goto="apps">
+      <div class="pillar-icon i1">📱</div>
+      <p class="pillar-label">Totalmente Grátis</p>
+      <p class="pillar-title">APPs Incríveis</p>
+      <p class="pillar-desc">Ferramentas de inglês, IA, estatística e muito mais. Acesse agora, sem cadastro.</p>
+      <span class="free-chip">GRÁTIS</span>
+    </button>
+    <button class="pillar" data-goto="mentorias">
+      <div class="pillar-icon i2">🎓</div>
+      <p class="pillar-label">Inscrição Aberta</p>
+      <p class="pillar-title">Mentorias</p>
+      <p class="pillar-desc">3 mentorias com módulos, PDFs, IA co-mentora e certificado oficial.</p>
+    </button>
+    <button class="pillar" data-goto="livros">
+      <div class="pillar-icon i3">📚</div>
+      <p class="pillar-label">E-books</p>
+      <p class="pillar-title">Acervo de Livros</p>
+      <p class="pillar-desc">Cinco títulos sobre espiritualidade, IA, negócios e poesia. Um deles gratuito.</p>
+    </button>
+    <button class="pillar" data-goto="membros">
+      <div class="pillar-icon i4">🏠</div>
+      <p class="pillar-label">Para todos</p>
+      <p class="pillar-title">Área de Membros</p>
+      <p class="pillar-desc">Cadastre-se gratuitamente, mesmo como visitante. Acesso exclusivo ao conteúdo.</p>
+      <span class="free-chip">ABERTO A VISITANTES</span>
+    </button>
+  </div>
+</div>
+
+<!-- APPS -->
+<section class="section apps-section" id="apps">
+  <div class="section-inner">
+    <span class="chip">📱 Completamente gratuitos</span>
+    <h2>APPs Incríveis — use agora, sem pagar nada</h2>
+    <p class="section-sub">Todos os aplicativos da plataforma são livres e abertos a qualquer visitante. Nenhum pagamento, nenhuma barreira.</p>
+    <div class="apps-grid">
+      <a class="app-card fade-up" href="https://www.lojasdecastro.com.br/ingles-iniciante" target="_blank">
+        <div class="app-card-icon">🇺🇸</div>
+        <p class="app-card-title">Inglês para Iniciantes</p>
+        <p class="app-card-desc">Aprenda os primeiros passos no inglês com lições interativas e progressivas.</p>
+        <span class="free-tag">Grátis — acesse agora</span>
+      </a>
+      <a class="app-card fade-up" href="https://www.lojasdecastro.com.br/httpsluizdecaxtrogithubiotradutor-ingport-voztradutor-ingles-voz" target="_blank">
+        <div class="app-card-icon">🎙️</div>
+        <p class="app-card-title">Tradutor Inglês — Voz</p>
+        <p class="app-card-desc">Tradutor inteligente com reconhecimento de voz integrado. Português ↔ Inglês.</p>
+        <span class="free-tag">Grátis — acesse agora</span>
+      </a>
+      <a class="app-card fade-up" href="https://www.lojasdecastro.com.br/construtor-de-startup" target="_blank">
+        <div class="app-card-icon">🚀</div>
+        <p class="app-card-title">Construtor de Startup</p>
+        <p class="app-card-desc">Estruture o modelo de negócio da sua startup com guia passo a passo e IA.</p>
+        <span class="free-tag">Grátis — acesse agora</span>
+      </a>
+      <a class="app-card fade-up" href="https://www.lojasdecastro.com.br/agente-ia-tec-educacional" target="_blank">
+        <div class="app-card-icon">🤖</div>
+        <p class="app-card-title">Agente IA Tec Educacional</p>
+        <p class="app-card-desc">Assistente com inteligência artificial voltado para o aprendizado educacional.</p>
+        <span class="free-tag">Grátis — acesse agora</span>
+      </a>
+      <a class="app-card fade-up" href="https://www.lojasdecastro.com.br/glossario-dinamico" target="_blank">
+        <div class="app-card-icon">📖</div>
+        <p class="app-card-title">Glossário Dinâmico</p>
+        <p class="app-card-desc">Dicionário interativo de termos técnicos, startups, IA e gestão atualizado.</p>
+        <span class="free-tag">Grátis — acesse agora</span>
+      </a>
+      <a class="app-card fade-up" href="https://www.lojasdecastro.com.br/app-estatistica-descritiva" target="_blank">
+        <div class="app-card-icon">📊</div>
+        <p class="app-card-title">Estatística Descritiva</p>
+        <p class="app-card-desc">Curso completo de estatística descritiva com aplicativo interativo incluso.</p>
+        <span class="free-tag">Grátis — acesse agora</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- MENTORIAS -->
+<section class="section" id="mentorias">
+  <div class="section-inner">
+    <span class="chip">🎓 Inscrição aberta</span>
+    <h2>Mentorias que transformam carreiras</h2>
+    <p class="section-sub">Três programas completos com módulos estruturados, PDFs, IA co-mentora e certificação oficial. Inscreva-se agora.</p>
+    <div class="mentorias-grid">
+      <div class="mentoria-card fade-up">
+        <div class="mentoria-header m-color-1">
+          <span class="mentoria-emoji">🚀</span>
+          <p class="mentoria-name">Mentoria das Startups</p>
+        </div>
+        <div class="mentoria-body">
+          <p class="mentoria-desc">Do zero ao sucesso empreendedor. Ideação, modelagem, financeiro, captação de investimento e expansão global em 5 módulos.</p>
+          <div class="mentoria-stats">
+            <span class="mstat">5 módulos</span>
+            <span class="mstat">48 aulas</span>
+            <span class="mstat">+32h</span>
+            <span class="mstat">Certificado</span>
+          </div>
+          <a class="btn-mentoria" href="https://luizdecaxtro.github.io/mentoria_startups/startup-inscricao.html" target="_blank">📝 Fazer inscrição gratuita</a>
+        </div>
+      </div>
+      <div class="mentoria-card fade-up">
+        <div class="mentoria-header m-color-2">
+          <span class="mentoria-emoji">💼</span>
+          <p class="mentoria-name">Mentoria das Profissões + IA</p>
+        </div>
+        <div class="mentoria-body">
+          <p class="mentoria-desc">Como a inteligência artificial está transformando as profissões. Prepare-se para o mercado de trabalho do futuro com módulos práticos.</p>
+          <div class="mentoria-stats">
+            <span class="mstat">5 módulos</span>
+            <span class="mstat">PDFs</span>
+            <span class="mstat">Certificado</span>
+          </div>
+          <a class="btn-mentoria gold-btn" href="https://www.lojasdecastro.com.br/inscricao-alunos" target="_blank">📝 Fazer inscrição</a>
+        </div>
+      </div>
+      <div class="mentoria-card fade-up">
+        <div class="mentoria-header m-color-3">
+          <span class="mentoria-emoji">🏫</span>
+          <p class="mentoria-name">MITE — Inovação Tecnológica em Educação</p>
+        </div>
+        <div class="mentoria-body">
+          <p class="mentoria-desc">Mentoria exclusiva para educadores e profissionais que desejam integrar tecnologia e inovação às práticas educacionais. Desconto de +50%.</p>
+          <div class="mentoria-stats">
+            <span class="mstat">Desconto 50%+</span>
+            <span class="mstat">Certificado</span>
+          </div>
+          <a class="btn-mentoria" href="https://www.lojasdecastro.com.br/mite-mentoria-inov-tec-educacao" target="_blank">📝 Inscrever-se</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVROS -->
+<section class="section livros-section" id="livros">
+  <div class="section-inner">
+    <span class="chip" style="background: rgba(212,160,23,0.15); color:#8a6000;">📚 E-books exclusivos</span>
+    <h2>Acervo de Livros</h2>
+    <p class="section-sub">Obras escritas por Luiz de Castro sobre espiritualidade, filosofia, inteligência artificial, negócios e poesia. Um deles disponível gratuitamente.</p>
+    <div class="livros-grid">
+      <div class="livro-card fade-up">
+        <div class="livro-cover c1">
+          <div class="livro-spine"></div>
+          📖
+        </div>
+        <div class="livro-body">
+          <p class="livro-title">Palavras que Libertam</p>
+          <p class="livro-desc">Espiritualidade e o poder das palavras para elevar e transformar a consciência humana.</p>
+          <a class="btn-buy" href="https://lojasdecastro.com.br/acesso-aos-livros" target="_blank">🔓 Ler Grátis</a>
+          <span class="livro-free">Use o código: 10PQLIB22</span>
+        </div>
+      </div>
+      <div class="livro-card fade-up">
+        <div class="livro-cover c2">
+          <div class="livro-spine"></div>
+          ✝️
+        </div>
+        <div class="livro-body">
+          <p class="livro-title">Episódios Impactantes do Pentateuco</p>
+          <p class="livro-desc">Uma jornada pelos primeiros cinco livros da Bíblia e seus ensinamentos atemporais.</p>
+          <a class="btn-buy" href="https://loja.infinitepay.io/decastro247/ivj1589-o-pentateuco" target="_blank">🛒 Comprar</a>
+        </div>
+      </div>
+      <div class="livro-card fade-up">
+        <div class="livro-cover c3">
+          <div class="livro-spine"></div>
+          ☯️
+        </div>
+        <div class="livro-body">
+          <p class="livro-title">O Bem e o Mal</p>
+          <p class="livro-desc">Nossa desconcertante capacidade de ser, simultaneamente, anjos e demônios.</p>
+          <a class="btn-buy" href="https://loja.infinitepay.io/decastro247/cvg2429-o-bem-e-o-mal-defeitos-e-virtudes-que-nos-" target="_blank">🛒 Comprar</a>
+        </div>
+      </div>
+      <div class="livro-card fade-up">
+        <div class="livro-cover c4">
+          <div class="livro-spine"></div>
+          🤖
+        </div>
+        <div class="livro-body">
+          <p class="livro-title">O Poder da Inteligência Artificial</p>
+          <p class="livro-desc">Como a IA transforma educação, trabalho e lazer — e como se preparar para isso.</p>
+          <a class="btn-buy" href="https://loja.infinitepay.io/decastro247/xxn9673-o-poder-da-inteligencia-artificial-na-educ" target="_blank">🛒 Comprar</a>
+        </div>
+      </div>
+      <div class="livro-card fade-up">
+        <div class="livro-cover c5">
+          <div class="livro-spine"></div>
+          🌹
+        </div>
+        <div class="livro-body">
+          <p class="livro-title">Poemas — 2024</p>
+          <p class="livro-desc">Versos que exploram o amor, as emoções e as conexões humanas mais profundas.</p>
+          <a class="btn-buy" href="http://mpago.la/12bgNcQ" target="_blank">🛒 Comprar — R$ 15</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBROS -->
+<section class="membros-section" id="membros">
+  <div class="membros-inner">
+    <div>
+      <span class="chip">🏠 Para todos</span>
+      <h2>Área de Membros — aberta a visitantes</h2>
+      <p class="section-sub">Você não precisa comprar nada para se cadastrar. Visitantes podem criar uma conta gratuita e acessar conteúdos exclusivos da plataforma.</p>
+      <div class="membros-perks">
+        <div class="perk">
+          <div class="perk-icon">🔑</div>
+          <div class="perk-text">
+            <p class="perk-title">Cadastro gratuito</p>
+            <p class="perk-desc">Qualquer visitante pode criar sua conta sem custo, sem compromisso.</p>
+          </div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon">📬</div>
+          <div class="perk-text">
+            <p class="perk-title">Acesso a conteúdo exclusivo</p>
+            <p class="perk-desc">Artigos, materiais e novidades disponíveis apenas para membros cadastrados.</p>
+          </div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon">🔔</div>
+          <div class="perk-text">
+            <p class="perk-title">Notificações de lançamentos</p>
+            <p class="perk-desc">Seja o primeiro a saber sobre novos livros, mentorias e aplicativos.</p>
+          </div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon">🤝</div>
+          <div class="perk-text">
+            <p class="perk-title">Comunidade de aprendizado</p>
+            <p class="perk-desc">Conecte-se com outros membros e empreendedores da plataforma.</p>
+          </div>
+        </div>
+      </div>
+      <a class="btn-membros" href="https://www.lojasdecastro.com.br/area-de-membros" target="_blank">🏠 Entrar na Área de Membros</a>
+    </div>
+    <div>
+      <div class="membros-visual">
+        <p class="membros-visual-title">Membros recentes</p>
+        <div class="member-row">
+          <div class="member-avatar">MC</div>
+          <div class="member-info">
+            <p class="member-name">Maria C.</p>
+            <p class="member-type">Empreendedora · Mentoria Startups</p>
+          </div>
+          <span class="member-badge-status mb-membro">Membro</span>
+        </div>
+        <div class="member-row">
+          <div class="member-avatar">JL</div>
+          <div class="member-info">
+            <p class="member-name">João L.</p>
+            <p class="member-type">Educador · MITE</p>
+          </div>
+          <span class="member-badge-status mb-membro">Membro</span>
+        </div>
+        <div class="member-row">
+          <div class="member-avatar" style="background:var(--gold);">AS</div>
+          <div class="member-info">
+            <p class="member-name">Ana S.</p>
+            <p class="member-type">Visitante — recém cadastrada</p>
+          </div>
+          <span class="member-badge-status mb-visitante">Visitante</span>
+        </div>
+        <div class="member-row">
+          <div class="member-avatar" style="background:#6B7AE8;">RP</div>
+          <div class="member-info">
+            <p class="member-name">Ricardo P.</p>
+            <p class="member-type">Desenvolvedor · Apps</p>
+          </div>
+          <span class="member-badge-status mb-visitante">Visitante</span>
+        </div>
+        <div class="visitante-note">
+          <strong>Visitante?</strong> Cadastre-se na Área de Membros sem pagar nada. Você tem acesso a conteúdo exclusivo desde o primeiro login.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <p class="cta-bignum">∞</p>
+    <span class="chip">Comece agora</span>
+    <h2>Tudo em um só lugar — e com a porta sempre aberta</h2>
+    <p>Apps gratuitos, livros exclusivos, mentorias transformadoras e uma área de membros aberta a visitantes. O que você está esperando?</p>
+    <div class="cta-buttons">
+      <a class="btn-green" href="https://luizdecaxtro.github.io/mentoria_startups/startup-inscricao.html" target="_blank">🚀 Inscrever na Mentoria das Startups</a>
+      <a class="btn-gold" href="https://www.lojasdecastro.com.br/inscricao-alunos" target="_blank">💼 Inscrever em Profissões + IA</a>
+      <a class="btn-outline" href="https://www.lojasdecastro.com.br/area-de-membros" target="_blank" style="color: var(--green);">🏠 Entrar como visitante</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="footer-logo" href="https://www.lojasdecastro.com.br" target="_blank">
+          <div class="footer-logo-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <span class="footer-logo-name">Luiz de Castro</span>
+        </a>
+        <p class="footer-tagline">Conhecimento, inovação e transformação para empreendedores, profissionais e aprendizes de todos os perfis.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Mentorias</h4>
+        <a href="https://luizdecaxtro.github.io/mentoria_startups/startup-inscricao.html" target="_blank">Mentoria das Startups</a>
+        <a href="https://www.lojasdecastro.com.br/inscricao-alunos" target="_blank">Profissões + IA</a>
+        <a href="https://www.lojasdecastro.com.br/mite-mentoria-inov-tec-educacao" target="_blank">MITE — Educação</a>
+      </div>
+      <div class="footer-col">
+        <h4>Livros</h4>
+        <a href="https://www.lojasdecastro.com.br/acesso-aos-livros" target="_blank">Palavras que Libertam</a>
+        <a href="https://loja.infinitepay.io/decastro247/ivj1589-o-pentateuco" target="_blank">O Pentateuco</a>
+        <a href="https://loja.infinitepay.io/decastro247/cvg2429-o-bem-e-o-mal-defeitos-e-virtudes-que-nos-" target="_blank">O Bem e o Mal</a>
+        <a href="https://loja.infinitepay.io/decastro247/xxn9673-o-poder-da-inteligencia-artificial-na-educ" target="_blank">O Poder da IA</a>
+      </div>
+      <div class="footer-col">
+        <h4>Plataforma</h4>
+        <a href="https://www.lojasdecastro.com.br/apps-incriveis" target="_blank">APPs Incríveis</a>
+        <a href="https://www.lojasdecastro.com.br/area-de-membros" target="_blank">Área de Membros</a>
+        <a href="https://www.lojasdecastro.com.br/curso-completo-de-estatistica" target="_blank">Curso de Estatística</a>
+        <a href="https://www.lojasdecastro.com.br/sobre" target="_blank">Sobre</a>
+        <a href="https://www.lojasdecastro.com.br/contato" target="_blank">Contato</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Luiz de Castro — Todos os direitos reservados. Mestre em Gestão.</p>
+      <a class="footer-site" href="https://www.lojasdecastro.com.br" target="_blank">www.lojasdecastro.com.br ↗</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function irPara(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var yOffset = -80;
+    var y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    try {
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    } catch(e) {
+      window.scrollTop = y;
+    }
+    try {
+      window.parent.scrollTo({ top: y, behavior: 'smooth' });
+    } catch(e2) {}
+    try {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch(e3) {}
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('[data-goto]').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        irPara(this.getAttribute('data-goto'));
+      });
+    });
+  });
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        const idx = [...document.querySelectorAll('.fade-up')].indexOf(e.target);
+        setTimeout(() => e.target.classList.add('in'), (idx % 6) * 100);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
